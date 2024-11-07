@@ -10,7 +10,9 @@ It's just a website for my discord... Nothing else...
 ![widget](https://img.shields.io/discord/1152234119716163616)
 
 
-For Po-nnu. Download the files named 1.png, 2.png, 3.png Click on one and download it from there. Repeat it on the other ones.
+For Po-nnu. Click this link 
+[Click here](https://github.com/Crossshield45/CSSERVER/)
+Download the files named 1.png, 2.png, 3.png Click on one and download it from there. Repeat it on the other ones.
 
 ## Info
 
