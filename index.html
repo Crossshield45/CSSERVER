@@ -1,120 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS-SERVER</title>
+    <title>CSSERVER</title>
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            color: white;
             font-family: Arial, sans-serif;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            height: 100vh;
-            overflow: hidden;
-            background: url('https://i.pinimg.com/736x/f7/4c/e6/f74ce6007b53858d32503641f6dd88ba.jpg') no-repeat center center/cover, rgba(0, 0, 0, 0.95);
-            background-blend-mode: multiply;
-            position: relative;
-        }
-
-        .left-panel {
-            display: grid;
-            grid-template-rows: auto;
-            gap: 5px;
-            overflow-y: visible; /* Display all images */
-            padding: 10px;
-            animation: scrollImages 60s linear infinite;
-            height: 100%; /* Full height */
-            z-index: 1; /* Ensure it's on top */
-            position: relative;
-        }
-
-        @keyframes scrollImages {
-            0%, 50% {
-                transform: translateY(0);
-            }
-            25%, 75% {
-                transform: translateY(-100%);
-            }
-        }
-
-        .left-panel img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            border-radius: 10px;
-            display: block;
-        }
-
-        .right-panel {
             display: flex;
             flex-direction: column;
-            align-items: flex-end;
+            align-items: center;
             justify-content: center;
-            padding: 20px;
-            position: absolute;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-            z-index: 2; /* Ensure it's on top */
-        }
-
-        h1 {
-            text-align: right;
+            height: 100vh;
             margin: 0;
-            color: #FFD700;
-            font-size: 2.5rem;
+            background-color: #121212;
+            color: #ffffff;
+            transition: background 0.3s, color 0.3s;
         }
-
-        p {
-            text-align: right;
-            margin: 10px 0;
+        .title {
+            font-size: 3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            animation: fadeIn 2s ease-in-out;
         }
-
-        button {
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .toggle-btn {
+            margin-top: 20px;
             padding: 10px 20px;
-            background-color: #7289da;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
+            font-size: 1rem;
             cursor: pointer;
-            margin-top: 10px;
+            border: none;
+            background-color: #ffcc00;
+            color: #121212;
+            border-radius: 5px;
         }
-
-        ::-webkit-scrollbar {
-            display: none; /* Remove scrollbar for Chrome/Edge */
-        }
-
-        ::-moz-scrollbar {
-            display: none; /* Remove scrollbar for Firefox */
+        .dark-mode {
+            background-color: #ffffff;
+            color: #121212;
         }
     </style>
 </head>
-
 <body>
-    <div class="left-panel">
-        <img src="https://wallpapers.com/images/high/minecraft-server-1920-x-1148-wallpaper-1d0wnnck0wfcf6wt.webp" alt="Image 1">
-        <img src="https://wallpapers.com/images/high/minecraft-server-1920-x-1080-wallpaper-2co3tzldgsq2ari5.webp" alt="Image 2">
-        <img src="https://wallpapers.com/images/high/minecraft-server-1920-x-1017-wallpaper-lg9g8i9hb6ijo7nm.webp" alt="Image 3">
-        <img src="https://preview.redd.it/o36eqf67p3k61.png?width=1080&crop=smart&auto=webp&s=e1938ad224d59204f5c6ca55bb09811658af01de" alt="Image 4">
-        <img src="https://wallpapers.com/images/high/minecraft-server-1920-x-1200-wallpaper-8wmfh0c8axu6zixs.webp" alt="Image 5">
-        <img src="https://wallpapers.com/images/high/minecraft-server-1920-x-1080-wallpaper-s09vwxmbxk5y8tuk.webp" alt="Image 6">
-        <img src="https://wallpapers.com/images/high/minecraft-server-2392-x-1342-wallpaper-2gud4udlod4l174r.webp" alt="Image 7">
-        <!-- Add more images here if needed -->
-    </div>
-    <div class="right-panel">
-        <h1>CS-SERVER</h1>
-        <p>Welcome to CS-SERVER!</p>
-        <button onclick="window.location.href='https://discord.gg/ZxRxzvTRjp'">Join Our Discord Server</button>
-    </div>
- <a href="http://dnsexit.com"><img src="http://dnsexit.com/images/dns2.gif" border=0></a>
-</body>
+    <div class="title">CSSERVER</div>
+    <button class="toggle-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
 
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
 </html>
