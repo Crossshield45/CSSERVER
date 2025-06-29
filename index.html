@@ -48,6 +48,7 @@
       text-transform: uppercase;
       animation: fadeIn 2s ease-in-out;
       color: #ffffff;
+      cursor: pointer;
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-20px); }
@@ -95,7 +96,7 @@
       background: rgba(0, 0, 0, 0.7);
     }
 
-    /* Glitch animation for easter egg */
+    /* Glitch animation */
     .glitch-effect {
       animation: glitch 0.3s infinite;
     }
@@ -124,36 +125,34 @@
     </a>
   </div>
 
-  <!-- Secret Sound -->
+  <!-- Sound effect -->
   <audio id="secretSound" src="https://freesound.org/data/previews/250/250629_4486188-lq.mp3" preload="auto"></audio>
 
   <script>
+    let toggleCount = 0;
+    let easterReady = false;
+
     function toggleMode() {
       document.body.classList.toggle('dark-mode');
+      toggleCount++;
+      if (toggleCount >= 10) {
+        easterReady = true;
+        console.log("Easter egg ready: click on title.");
+      }
     }
 
-    let typed = "";
-    const secretCode = "wofi";
-    document.addEventListener("keydown", function(event) {
-      if (document.activeElement.tagName === "INPUT" || document.activeElement.tagName === "TEXTAREA") return;
-      typed += event.key.toLowerCase();
-      if (typed.length > secretCode.length) {
-        typed = typed.slice(-secretCode.length);
-      }
-      if (typed === secretCode) {
-        triggerEasterEgg();
+    const title = document.getElementById("main-title");
+    const sound = document.getElementById("secretSound");
+
+    title.addEventListener("click", () => {
+      if (easterReady) {
+        title.classList.add("glitch-effect");
+        sound.play();
+        setTimeout(() => {
+          window.location.href = "ascii-art.html";
+        }, 2500);
       }
     });
-
-    function triggerEasterEgg() {
-      const sound = document.getElementById("secretSound");
-      const title = document.getElementById("main-title");
-      title.classList.add("glitch-effect");
-      sound.play();
-      setTimeout(() => {
-        window.location.href = "ascii-art.html";
-      }, 2500); // delay for sound + animation
-    }
   </script>
 </body>
 </html>
