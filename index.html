@@ -11,8 +11,7 @@
     if (location.protocol !== 'https:') {
         location.replace(`https:${location.href.substring(location.protocol.length)}`);
     }
-</script>
-
+  </script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -24,7 +23,6 @@
       margin: 0;
       color: #ffffff;
       transition: background 1s ease-in-out, color 0.3s;
-      /* Full spectrum rainbow for light mode */
       background: linear-gradient(-45deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #8B00FF);
       background-size: 400% 400%;
       animation: gradientBG 10s ease infinite;
@@ -35,7 +33,6 @@
       100% { background-position: 0% 50%; }
     }
     .dark-mode {
-      /* Full dark spectrum: deeper, muted versions of rainbow colors */
       background: linear-gradient(-45deg, #330000, #332200, #333300, #003300, #000033, #220033, #330033);
       background-size: 400% 400%;
       animation: darkGradientBG 10s ease infinite;
@@ -97,11 +94,24 @@
     .toggle-mode:hover {
       background: rgba(0, 0, 0, 0.7);
     }
+
+    /* Glitch animation for easter egg */
+    .glitch-effect {
+      animation: glitch 0.3s infinite;
+    }
+    @keyframes glitch {
+      0% { transform: translate(1px, -1px) rotate(0deg); }
+      20% { transform: translate(-1px, 2px) rotate(-1deg); }
+      40% { transform: translate(-3px, 1px) rotate(1deg); }
+      60% { transform: translate(3px, 1px) rotate(0deg); }
+      80% { transform: translate(1px, -1px) rotate(1deg); }
+      100% { transform: translate(-1px, 2px) rotate(-1deg); }
+    }
   </style>
 </head>
 <body>
   <button class="toggle-mode" onclick="toggleMode()">Toggle Dark/Light</button>
-  <div class="title">CSSERVER</div>
+  <div class="title" id="main-title">CSSERVER</div>
   <div class="menu">
     <a href="https://discord.gg/BcfutEKgcj" class="menu-item" target="_blank">
       <i class="fa-brands fa-discord"></i> Join my Discord
@@ -113,9 +123,36 @@
       <i class="fa-brands fa-youtube"></i> Youtube Channel
     </a>
   </div>
+
+  <!-- Secret Sound -->
+  <audio id="secretSound" src="https://freesound.org/data/previews/250/250629_4486188-lq.mp3" preload="auto"></audio>
+
   <script>
     function toggleMode() {
       document.body.classList.toggle('dark-mode');
+    }
+
+    let typed = "";
+    const secretCode = "wofi";
+    document.addEventListener("keydown", function(event) {
+      if (document.activeElement.tagName === "INPUT" || document.activeElement.tagName === "TEXTAREA") return;
+      typed += event.key.toLowerCase();
+      if (typed.length > secretCode.length) {
+        typed = typed.slice(-secretCode.length);
+      }
+      if (typed === secretCode) {
+        triggerEasterEgg();
+      }
+    });
+
+    function triggerEasterEgg() {
+      const sound = document.getElementById("secretSound");
+      const title = document.getElementById("main-title");
+      title.classList.add("glitch-effect");
+      sound.play();
+      setTimeout(() => {
+        window.location.href = "ascii-art.html";
+      }, 2500); // delay for sound + animation
     }
   </script>
 </body>
